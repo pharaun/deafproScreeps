@@ -1,4 +1,5 @@
 var taskBuild = require('task.build');
+var taskUpgrade = require('task.upgrade');
 var taskHarvest = require('task.harvest');
 
 var roleBuilder = {
@@ -17,6 +18,7 @@ var roleBuilder = {
 
         if(creep.memory.building) {
             taskBuild.run(creep);
+            taskUpgrade.run(creep);
         } else {
             taskHarvest.run(creep);
         }

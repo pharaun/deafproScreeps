@@ -6,7 +6,11 @@ var taskBuild = {
      **/
     run: function(creep) {
         const target = creep.pos.findClosestByRange(FIND_CONSTRUCTION_SITES);
-        if(creep.build(target) == ERR_NOT_IN_RANGE) {
+        const ret = creep.build(target);
+
+        if(ret == OK) {
+            return true;
+        } else if(ret == ERR_NOT_IN_RANGE) {
             creep.moveTo(target, {visualizePathStyle: {stroke: '#ffffff'}});
             return true;
         }

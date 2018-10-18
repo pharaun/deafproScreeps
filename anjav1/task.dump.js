@@ -12,7 +12,11 @@ var taskDump = {
             }
         });
         if(targets.length > 0) {
-            if(creep.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+            const ret = creep.transfer(targets[0], RESOURCE_ENERGY);
+
+            if(ret == OK) {
+                return true;
+            } else if(ret == ERR_NOT_IN_RANGE) {
                 creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
                 return true;
             }

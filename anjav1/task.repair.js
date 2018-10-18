@@ -13,8 +13,12 @@ var taskRepair = {
         targets.sort((a,b) => cost(creep, a) - cost(creep, b));
 
         if(targets.length > 0) {
-            if(creep.repair(targets[0]) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(targets[0]);
+            const ret = creep.repair(targets[0], RESOURCE_ENERGY);
+
+            if(ret == OK) {
+                return true;
+            } else if(ret == ERR_NOT_IN_RANGE) {
+                creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
                 return true;
             }
         }

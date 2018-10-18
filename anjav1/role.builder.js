@@ -20,8 +20,7 @@ var roleBuilder = {
         if(creep.memory.building) {
             priorityTask(
                 creep,
-                //[taskBuild, taskRepair, taskUpgrade]
-                [taskBuild, taskRepair]
+                [taskBuild, taskRepair, taskUpgrade]
             );
         } else {
             taskHarvest.run(creep);

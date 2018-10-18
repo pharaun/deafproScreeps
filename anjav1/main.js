@@ -7,7 +7,7 @@ module.exports.loop = function () {
     enoughCreepRole('spawn-w1n7', 'harvester', 2, [WORK,CARRY,MOVE]);
     enoughCreepRole('spawn-w1n7', 'upgrader', 2, [WORK,WORK,CARRY,CARRY,MOVE]);
     enoughCreepRole('spawn-w1n7', 'builder', 2, [WORK,WORK,CARRY,CARRY,MOVE]);
-    
+
     spawnerStatus('spawn-w1n7');
 
     // Creeps role execution
@@ -40,16 +40,16 @@ function enoughCreepRole(spawnerName, creepRole, creepLimit, creepBody) {
         var newName = creepRole + Game.time;
         console.log('Spawning new ' + creepRole + ': ' + newName);
         Game.spawns[spawnerName].spawnCreep(creepBody, newName, {memory: {role: creepRole}});
-    }    
+    }
 }
 
 function spawnerStatus(spawnerName) {
-    if(Game.spawns[spawnerName].spawning) { 
+    if(Game.spawns[spawnerName].spawning) {
         var spawningCreep = Game.creeps[Game.spawns[spawnerName].spawning.name];
         Game.spawns[spawnerName].room.visual.text(
             '🛠️' + spawningCreep.memory.role,
-            Game.spawns[spawnerName].pos.x + 1, 
-            Game.spawns[spawnerName].pos.y, 
+            Game.spawns[spawnerName].pos.x + 1,
+            Game.spawns[spawnerName].pos.y,
             {align: 'left', opacity: 0.8}
         );
     }

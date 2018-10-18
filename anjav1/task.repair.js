@@ -1,6 +1,9 @@
 var taskRepair = {
 
-    /** @param {Creep} creep **/
+    /**
+     * @param {Creep} creep
+     * @return {Bool} hasTask - true if it can work/move to, false otherwise
+     **/
     run: function(creep) {
         var targets = creep.room.find(FIND_STRUCTURES, {
             filter: object => object.hits < object.hitsMax
@@ -12,8 +15,10 @@ var taskRepair = {
         if(targets.length > 0) {
             if(creep.repair(targets[0]) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(targets[0]);
+                return true;
             }
         }
+        return false;
     }
 };
 

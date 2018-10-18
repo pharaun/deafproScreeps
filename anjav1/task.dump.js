@@ -5,21 +5,19 @@ var taskDump = {
      * @return {Bool} hasTask - true if it can work/move to, false otherwise
      **/
     run: function(creep) {
-        const targets = creep.room.find(FIND_STRUCTURES, {
+        const target = creep.pos.findClosestByRange(FIND_STRUCTURES, {
             filter: (structure) => {
                 return (structure.structureType == STRUCTURE_EXTENSION || structure.structureType == STRUCTURE_SPAWN) &&
                     structure.energy < structure.energyCapacity;
             }
         });
-        if(targets.length > 0) {
-            const ret = creep.transfer(targets[0], RESOURCE_ENERGY);
+        const ret = creep.transfer(target, RESOURCE_ENERGY);
 
-            if(ret == OK) {
-                return true;
-            } else if(ret == ERR_NOT_IN_RANGE) {
-                creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
-                return true;
-            }
+        if(ret == OK) {
+            return true;
+        } else if(ret == ERR_NOT_IN_RANGE) {
+            creep.moveTo(target, {visualizePathStyle: {stroke: '#ffffff'}});
+            return true;
         }
         return false;
     }

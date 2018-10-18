@@ -16,8 +16,11 @@ var roleHarvester = {
         }
 
         if(creep.memory.dumping) {
-            taskDump.run(creep);
-            //taskUpgrade.run(creep);
+            // This is kinda awkard but we want to do x else y default
+            if(taskDump.run(creep)) {
+            } else {
+                taskUpgrade.run(creep);
+            }
         } else {
             taskHarvest.run(creep);
         }

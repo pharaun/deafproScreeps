@@ -18,20 +18,16 @@ var roleBuilder = {
         }
 
         if(creep.memory.building) {
-            priorityTask(
-                creep,
-                [taskBuild, taskRepair, taskUpgrade]
-            );
+            if(taskBuild.run(creep) || taskRepair.run(creep)) {
+                // Noop
+                () => {}
+            } else {
+                taskUpgrade.run(creep);
+            }
         } else {
             taskHarvest.run(creep);
         }
     }
 };
-
-function priorityTask(creep, tasks) {
-    tasks.some(function(task) {
-        task.run(creep);
-    });
-}
 
 module.exports = roleBuilder;

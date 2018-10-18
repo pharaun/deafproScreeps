@@ -19,7 +19,7 @@ var roleBuilder = {
 
         if(creep.memory.building) {
             taskBuild.run(creep);
-            taskRepair.run(creep);
+            //taskRepair.run(creep);
             taskUpgrade.run(creep);
         } else {
             taskHarvest.run(creep);

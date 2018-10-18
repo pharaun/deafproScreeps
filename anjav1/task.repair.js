@@ -6,7 +6,8 @@ var taskRepair = {
             filter: object => object.hits < object.hitsMax
         });
 
-        targets.sort((a,b) => a.hits - b.hits);
+        // Sort by damage * distance
+        targets.sort((a,b) => cost(creep, a) - cost(creep, b));
 
         if(targets.length > 0) {
             if(creep.repair(targets[0]) == ERR_NOT_IN_RANGE) {
@@ -15,5 +16,9 @@ var taskRepair = {
         }
     }
 };
+
+function cost(creep, target) {
+    return (target.hits/target.hitsMax) * creep.pos.getRangeTo(target.pos.x, target.pos.y)
+}
 
 module.exports = taskRepair;
